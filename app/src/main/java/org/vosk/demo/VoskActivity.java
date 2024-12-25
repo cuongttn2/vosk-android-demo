@@ -39,6 +39,8 @@ import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
+import dev.esnault.wanakana.core.Wanakana;
+
 public class VoskActivity extends Activity implements
         RecognitionListener {
 
@@ -122,12 +124,12 @@ public class VoskActivity extends Activity implements
 
     @Override
     public void onResult(String hypothesis) {
-        resultView.append(hypothesis + "\n");
+        resultView.append(Wanakana.toRomaji(hypothesis) + "\n");
     }
 
     @Override
     public void onFinalResult(String hypothesis) {
-        resultView.append(hypothesis + "\n");
+        resultView.append(Wanakana.toRomaji(hypothesis) + "\n");
         setUiState(STATE_DONE);
         if (speechStreamService != null) {
             speechStreamService = null;
@@ -136,7 +138,7 @@ public class VoskActivity extends Activity implements
 
     @Override
     public void onPartialResult(String hypothesis) {
-        resultView.append(hypothesis + "\n");
+        resultView.append(Wanakana.toRomaji(hypothesis) + "\n");
     }
 
     @Override
